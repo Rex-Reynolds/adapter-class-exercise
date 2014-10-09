@@ -15,7 +15,9 @@ import org.junit.Test;
  */
 public class ChemicalDataBankTest {
 	private ChemicalDataBank cBank;
-	private float expected;
+	private float expectedF;
+	private String expectedS;
+	private double expectedD;
 
 	/**
 	 * @throws java.lang.Exception
@@ -31,7 +33,9 @@ public class ChemicalDataBankTest {
 	@After
 	public void tearDown() throws Exception {
 		cBank = null;
-		expected = 0.0f;
+		expectedF = 0.0f;
+		expectedS = null;
+		expectedD = 0;
 	}
 
 	/**
@@ -41,8 +45,11 @@ public class ChemicalDataBankTest {
 	 */
 	@Test
 	public void testGetCriticalPoint() {
-		expected = 100.0f;
-		assertEquals(expected, cBank.getCriticalPoint("Water", "F"),0);
+		expectedF = 100.0f;
+		assertEquals(expectedF, cBank.getCriticalPoint("Water", "F"),0);
+		expectedF = 0.0f;
+		assertEquals(expectedF, cBank.getCriticalPoint("Water", "M"),0);
+		
 	}
 
 	/**
@@ -52,7 +59,8 @@ public class ChemicalDataBankTest {
 	 */
 	@Test
 	public void testGetMolecularStructure() {
-		fail("Not yet implemented");
+	  expectedS = "H2O";
+		assertEquals(expectedS, cBank.getMolecularStructure("Water"));
 	}
 
 	/**
@@ -62,7 +70,8 @@ public class ChemicalDataBankTest {
 	 */
 	@Test
 	public void testGetMolecularWeight() {
-		fail("Not yet implemented");
+	  expectedD = 18.015;
+	  assertEquals(expectedD, cBank.getMolecularWeight("water"),0);
 	}
 
 }
